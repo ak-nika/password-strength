@@ -14,18 +14,24 @@
 
     <section>
       <main class="input">
-        <input type="text" id="password" placeholder="Enter your password" />
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="24px"
-          viewBox="0 -960 960 960"
-          width="24px"
-          fill="#000"
-        >
-          <path
-            d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z"
-          />
-        </svg>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+        />
+        <button id="icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="25px"
+            viewBox="0 -960 960 960"
+            width="25px"
+            fill="#000"
+          >
+            <path
+              d="M264-624h336v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85h-72q0-80 56.23-136 56.22-56 136-56Q560-912 616-855.84q56 56.16 56 135.84v96h24q29.7 0 50.85 21.15Q768-581.7 768-552v384q0 29.7-21.16 50.85Q725.68-96 695.96-96H263.72Q234-96 213-117.15T192-168v-384q0-29.7 21.15-50.85Q234.3-624 264-624Zm0 456h432v-384H264v384Zm216.21-120Q510-288 531-309.21t21-51Q552-390 530.79-411t-51-21Q450-432 429-410.79t-21 51Q408-330 429.21-309t51 21ZM264-168v-384 384Z"
+            />
+          </svg>
+        </button>
       </main>
 
       <div class="bar">
@@ -33,7 +39,7 @@
       </div>
 
       <main class="result">
-        <p>Password Strength</p>
+        <p>Type Password</p>
         <button id="copy">Copy</button>
       </main>
     </section>

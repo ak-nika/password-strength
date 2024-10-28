@@ -2,12 +2,14 @@ const passwordInput = document.getElementById("password");
 const resultText = document.querySelector("p");
 const copy = document.getElementById("copy");
 const bar = document.getElementById("bar");
+const icon = document.getElementById("icon");
 const colors = {
   veryWeak: "#ff6b6b",
   weak: "#ffa726",
   moderate: "#ffd54f",
   strong: "#81c784",
   veryStrong: "#388e3c",
+  default: "#333333",
 };
 
 copy.disabled = true;
@@ -35,7 +37,7 @@ passwordInput.addEventListener("input", (e) => {
   const hasLower = /[a-z]/.test(input);
   const hasUpper = /[A-Z]/.test(input);
   const hasNumber = /[0-9]/.test(input);
-  const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(input);
+  const hasSpecial = /[!@#$%^&*(),.?"'-_+=/~`:{}|<>]/.test(input);
 
   const typesCount = [hasLower, hasUpper, hasNumber, hasSpecial].filter(
     Boolean
@@ -43,7 +45,12 @@ passwordInput.addEventListener("input", (e) => {
   score += typesCount;
 
   // Determine password strength
-  if (score >= 8) {
+  if (length === 0) {
+    resultText.innerText = "Type Password";
+    resultText.style.color = colors.default;
+    bar.style.width = "0%";
+    copy.disabled = true;
+  } else if (score >= 8) {
     bar.style.width = "100%";
     bar.style.backgroundColor = colors.veryStrong;
     resultText.style.color = colors.veryStrong;
@@ -88,4 +95,16 @@ copy.addEventListener("click", () => {
   setTimeout(() => {
     copy.innerText = "Copy";
   }, 3000);
+});
+
+icon.addEventListener("click", () => {
+  if (passwordInput.type === "text") {
+    passwordInput.type = "password";
+    icon.innerHTML =
+      '<svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#000"><path d="M263.72-96Q234-96 213-117.15T192-168v-384q0-29.7 21.15-50.85Q234.3-624 264-624h24v-96q0-79.68 56.23-135.84 56.22-56.16 136-56.16Q560-912 616-855.84q56 56.16 56 135.84v96h24q29.7 0 50.85 21.15Q768-581.7 768-552v384q0 29.7-21.16 50.85Q725.68-96 695.96-96H263.72Zm.28-72h432v-384H264v384Zm216.21-120Q510-288 531-309.21t21-51Q552-390 530.79-411t-51-21Q450-432 429-410.79t-21 51Q408-330 429.21-309t51 21ZM360-624h240v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85v96Zm-96 456v-384 384Z"/></svg>';
+  } else {
+    passwordInput.type = "text";
+    icon.innerHTML =
+      '<svg xmlns="http://www.w3.org/2000/svg" height="25px" viewBox="0 -960 960 960" width="25px" fill="#000"><path d="M264-624h336v-96q0-50-35-85t-85-35q-50 0-85 35t-35 85h-72q0-80 56.23-136 56.22-56 136-56Q560-912 616-855.84q56 56.16 56 135.84v96h24q29.7 0 50.85 21.15Q768-581.7 768-552v384q0 29.7-21.16 50.85Q725.68-96 695.96-96H263.72Q234-96 213-117.15T192-168v-384q0-29.7 21.15-50.85Q234.3-624 264-624Zm0 456h432v-384H264v384Zm216.21-120Q510-288 531-309.21t21-51Q552-390 530.79-411t-51-21Q450-432 429-410.79t-21 51Q408-330 429.21-309t51 21ZM264-168v-384 384Z"/></svg>';
+  }
 });
