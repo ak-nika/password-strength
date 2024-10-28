@@ -3,6 +3,8 @@ const resultText = document.querySelector("p");
 const copy = document.getElementById("copy");
 const bar = document.getElementById("bar");
 const icon = document.getElementById("icon");
+const tooltip = document.getElementById("tooltip");
+
 const colors = {
   veryWeak: "#ff6b6b",
   weak: "#ffa726",
@@ -81,19 +83,24 @@ passwordInput.addEventListener("input", (e) => {
     resultText.innerText = "Very Weak";
     copy.disabled = true;
   }
+
+  if (copy.disabled) {
+    tooltip.innerText = "Enter a strong password to copy";
+  } else {
+    tooltip.innerText = "Copy password to clipboard";
+  }
 });
 
 copy.addEventListener("click", () => {
-  navigator.clipboard
-    .writeText(passwordInput.value)
-    .then(
-      () =>
-        (copy.innerHTML =
-          'Copied <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff"><path d="M389-267 195-460l51-52 143 143 325-324 51 51-376 375Z"/></svg>')
-    );
+  navigator.clipboard.writeText(passwordInput.value).then(() => {
+    copy.innerHTML =
+      'Copied <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#ffffff"><path d="M389-267 195-460l51-52 143 143 325-324 51 51-376 375Z"/></svg>';
+    tooltip.innerText = "Password copied to clipboard";
+  });
 
   setTimeout(() => {
     copy.innerText = "Copy";
+    tooltip.innerText = "Copy password to clipboard";
   }, 3000);
 });
 
