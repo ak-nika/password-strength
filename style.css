@@ -14,6 +14,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 5%;
 }
 h1,
 h3 {
@@ -109,4 +110,10 @@ section {
   cursor: not-allowed;
   background-color: #e0e0e0;
   color: #ffffff;
+}
+
+@media only screen and (max-width: 500px) {
+  section {
+    width: 100%;
+  }
 }
