@@ -16,8 +16,45 @@ const colors = {
 
 copy.disabled = true;
 
+// List of common weak passwords
+const weakPasswords = [
+  "password",
+  "password123",
+  "password1",
+  "password12",
+  "password1234",
+  "password12345",
+  "123456",
+  "12345678",
+  "qwerty",
+  "abc123",
+  "111111",
+  "123123",
+  "admin",
+  "letmein",
+  "welcome",
+];
+
 passwordInput.addEventListener("input", (e) => {
   const input = e.target.value;
+
+  // Check if input contains spaces or is a weak password
+  if (/\s/.test(input)) {
+    resultText.innerText = "No spaces allowed in password";
+    resultText.style.color = colors.veryWeak;
+    bar.style.width = "10%";
+    bar.style.backgroundColor = colors.veryWeak;
+    copy.disabled = true;
+    return;
+  } else if (weakPasswords.includes(input.toLowerCase())) {
+    resultText.innerText = "Password too common, please choose another";
+    resultText.style.color = colors.veryWeak;
+    bar.style.width = "10%";
+    bar.style.backgroundColor = colors.veryWeak;
+    copy.disabled = true;
+    return;
+  }
+
   const veryWeak = { length: 1, types: 1 };
   const weak = { length: 6, types: 1 };
   const moderate = { length: 8, types: 2 };
